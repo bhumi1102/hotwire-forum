@@ -12,7 +12,9 @@
 
   <body>
     <%= render("shared/navigation") %>
+    
     <div class="container mt-4"
+      <%= render("shared/flash") %>
       <%= yield %>
     </div>
   </body>
