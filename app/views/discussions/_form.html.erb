@@ -1,5 +1,5 @@
-<%= form_with(model: discussion) do |form| %>
-    
+<%= form_with(model: discussion, id: dom_id(discussion)) do |form| %>
+
   <%if discussion.errors.any? %>
     <div id="error_explanation" >
       <h2><%=pluralize(discussion.errors.count, "error") %> found </h2>
