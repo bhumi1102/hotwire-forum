@@ -4,6 +4,8 @@ class Discussion < ApplicationRecord
 
   validates :name, presence: true
 
+  accepts_nested_attributes_for :posts
+
   # note: the below 3 after_* lines could be replaced by this broadcasts_to
   # single line. But we are doing to keep the explicit version
   # broadcasts_to "discussions"
