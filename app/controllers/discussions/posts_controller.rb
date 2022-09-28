@@ -2,7 +2,7 @@ module Discussions
   class PostsController < ApplicationController
     before_action :authenticate_user!
     before_action :set_discussion
-    before_action :set_post
+    before_action :set_post, only: [:show, :edit, :update, :destroy]
 
     def show
     end
@@ -33,6 +33,15 @@ module Discussions
         end
       end
 
+    end
+
+    def destroy
+      @post.destroy
+
+      respond_to do |format|
+        format.turbo_stream { } #let the broadcast_remove_to handle the delete
+        format.html { redirect_to @post.discussion, notice: "Post deleted", status: :see_other }
+      end
     end
     
     private
