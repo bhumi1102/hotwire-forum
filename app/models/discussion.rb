@@ -7,6 +7,9 @@ class Discussion < ApplicationRecord
 
   accepts_nested_attributes_for :posts
 
+  # discussion.category_name
+  delegate :name, prefix: :category, to: :category, allow_nil: true
+
   # note: the below 3 after_* lines could be replaced by this broadcasts_to
   # single line. But we are doing to keep the explicit version
   # broadcasts_to "discussions"
