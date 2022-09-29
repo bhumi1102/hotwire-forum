@@ -1,4 +1,9 @@
-<%= turbo_stream_from 'discussions' %>
+<% if @category.present? %>
+  <%= turbo_stream_from @category %>
+<% else %>
+  <%= turbo_stream_from 'discussions' %>
+<% end %>
+
 <div class="d-flex justify-content-between align-items-center">
   <h1>Discussions</h1>
   <%= link_to "New discussion", new_discussion_path, class: "btn btn-primary" %>
@@ -14,6 +19,9 @@
   </div>
 
   <div class="col">
+    <% if @category.present? %>
+      <h4>Viewing discussions for <%= @category.name %></h4>  
+    <% end %>
     <div id="discussions">
       <%= render partial: "discussions/discussion", collection: @discussions %>
     </div>

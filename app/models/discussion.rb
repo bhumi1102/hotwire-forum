@@ -10,6 +10,9 @@ class Discussion < ApplicationRecord
   # discussion.category_name
   delegate :name, prefix: :category, to: :category, allow_nil: true
 
+  # using the shortcut version here
+  broadcasts_to :category, inserts_by: :prepend
+  
   # note: the below 3 after_* lines could be replaced by this broadcasts_to
   # single line. But we are doing to keep the explicit version
   # broadcasts_to "discussions"
