@@ -1,5 +1,10 @@
 <%= turbo_frame_tag "#{dom_id(post)}_form", target: "_top" do %>
-  <%= form_with(model: [post.discussion, post]) do |form| %>
+  <% if post.discussion.closed? && post.new_record? %>
+    <div class="alert alert-secondary fw-bold" role="alert">
+      This discussion is currently closed and not accepting new posts
+    </div>
+  <% else %>
+    <%= form_with(model: [post.discussion, post]) do |form| %>
     <% if post.errors.any? %>
       <div id="error_explantion">
         <h2>
@@ -22,5 +27,6 @@
     <div class="mb-3">
       <%= form.submit class: "btn btn-primary" %>
     </div>
+    <% end %>
   <% end %>
 <% end %>
