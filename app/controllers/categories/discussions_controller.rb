@@ -5,7 +5,7 @@ module Categories
 
     def index
       
-      @discussions = @category.discussions.pinned_first
+      @pagy, @discussions = pagy(@category.discussions.pinned_first)
       
       render "discussions/index" #the 'normal' index view not category/discussion view
     end
