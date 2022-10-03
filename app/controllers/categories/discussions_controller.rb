@@ -4,9 +4,9 @@ module Categories
     before_action :set_category
 
     def index
-      puts "%%%%%%%%%%%%%%%%%#{@category.to_s}"
-      @discussions = @category.discussions.order(updated_at: :desc)
-      puts "************************* #{@discussions}"
+      
+      @discussions = @category.discussions.pinned_first
+      
       render "discussions/index" #the 'normal' index view not category/discussion view
     end
 

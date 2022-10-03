@@ -7,6 +7,8 @@ class Discussion < ApplicationRecord
 
   accepts_nested_attributes_for :posts
 
+  scope :pinned_first, -> { order(pinned: :desc, updated_at: :desc) }
+
   # discussion.category_name
   delegate :name, prefix: :category, to: :category, allow_nil: true
 
