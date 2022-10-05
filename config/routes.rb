@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     collection do
       get "category/:id", to: "categories/discussions#index", as: :category
     end
+
+    resources :notifications, only: [:create], module: :discussions
   end
-
-
 end
