@@ -66,8 +66,6 @@ module Discussions
     end
 
     def send_post_notification!(post)
-      
-      puts "***************************************"
       post_subscribers = post.discussion.subscribed_users - [post.user]
       NewPostNotification.with(post: post).deliver_later(post_subscribers)
     end
