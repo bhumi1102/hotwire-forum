@@ -5,6 +5,9 @@ class Post < ApplicationRecord
 
   validates :body, presence: true
 
+  # scope from noticed gem
+  has_noticed_notifications
+
   after_create_commit -> { broadcast_append_to discussion, partial: "discussions/posts/post", locals: {post: self} }
   after_update_commit -> { broadcast_replace_to discussion, partial: "discussions/posts/post", locals: {post: self} }
   after_destroy_commit -> { broadcast_remove_to discussion }
